@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace GestorApp.Models
 {
@@ -10,6 +6,6 @@ namespace GestorApp.Models
     {
         public int SensoresId { get; set; }
         public string Nombre { get; set; }
-        public virtual ICollection<Telefonos> Telefonos { get; set; }
+        public virtual ICollection<TelefonosSensores> TelSen { get; set; }
     }
 }

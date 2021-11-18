@@ -1,9 +1,4 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Options;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace GestorApp.Models
 {
@@ -24,5 +19,5 @@ namespace GestorApp.Models
         public DbSet<GestorApp.Models.Telefonos> Telefonos { get; set; }
         public DbSet<GestorApp.Models.Sensores> Sensores { get; set; }
     }
-    
+
 }

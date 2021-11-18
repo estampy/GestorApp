@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace GestorApp.Models
 {
@@ -12,7 +8,7 @@ namespace GestorApp.Models
         public string Marca { get; set; }
         public string Modelo { get; set; }
         public float Precio { get; set; }
-        public virtual ICollection<Sensores> Sensores { get; set; }
+        public virtual ICollection<TelefonosSensores> TelSen { get; set; }
         public virtual ICollection<Instalaciones> Instalaciones { get; set; }
     }
 }
