@@ -10,6 +10,6 @@ namespace GestorApp.Models
         public int OperariosId { get; set; }
         public string Nombre { get; set; }
         public string Apellido { get; set; }
-
+        public virtual ICollection<Instalaciones> Instalaciones { get; set; }
     }
 }

@@ -3,14 +3,16 @@ using System;
 using GestorApp.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace GestorApp.Migrations
 {
     [DbContext(typeof(GestorContext))]
-    partial class GestorContextModelSnapshot : ModelSnapshot
+    [Migration("20211118231358_NotMappedInTelefono")]
+    partial class NotMappedInTelefono
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -114,21 +116,6 @@ namespace GestorApp.Migrations
                     b.ToTable("Telefonos");
                 });
 
-            modelBuilder.Entity("SensoresTelefonos", b =>
-                {
-                    b.Property<int>("SensoresId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("TelefonosId")
-                        .HasColumnType("int");
-
-                    b.HasKey("SensoresId", "TelefonosId");
-
-                    b.HasIndex("TelefonosId");
-
-                    b.ToTable("SensoresTelefonos");
-                });
-
             modelBuilder.Entity("GestorApp.Models.Instalaciones", b =>
                 {
                     b.HasOne("GestorApp.Models.Apps", "Apps")
@@ -154,21 +141,6 @@ namespace GestorApp.Migrations
                     b.Navigation("Operarios");
 
                     b.Navigation("Telefonos");
-                });
-
-            modelBuilder.Entity("SensoresTelefonos", b =>
-                {
-                    b.HasOne("GestorApp.Models.Sensores", null)
-                        .WithMany()
-                        .HasForeignKey("SensoresId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("GestorApp.Models.Telefonos", null)
-                        .WithMany()
-                        .HasForeignKey("TelefonosId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
                 });
 
             modelBuilder.Entity("GestorApp.Models.Apps", b =>

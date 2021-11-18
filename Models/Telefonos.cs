@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -12,5 +13,6 @@ namespace GestorApp.Models
         public string Modelo { get; set; }
         public float Precio { get; set; }
         public virtual ICollection<Sensores> Sensores { get; set; }
+        public virtual ICollection<Instalaciones> Instalaciones { get; set; }
     }
 }

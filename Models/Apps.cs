@@ -9,5 +9,6 @@ namespace GestorApp.Models
     {
         public int AppsId { get; set; }
         public string Nombre { get; set; }
+        public virtual ICollection<Instalaciones> Instalaciones { get; set; }
     }
 }
