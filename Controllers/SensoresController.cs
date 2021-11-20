@@ -20,38 +20,38 @@ namespace GestorApp.Controllers
             _context = context;
         }
 
-        // GET: api/Sensores
+        // GET: api/Sensors
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Sensores>>> GetSensores()
+        public async Task<ActionResult<IEnumerable<Sensor>>> GetSensores()
         {
             return await _context.Sensores.ToListAsync();
         }
 
-        // GET: api/Sensores/5
+        // GET: api/Sensors/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Sensores>> GetSensores(int id)
+        public async Task<ActionResult<Sensor>> GetSensor(int id)
         {
-            var sensores = await _context.Sensores.FindAsync(id);
+            var sensor = await _context.Sensores.FindAsync(id);
 
-            if (sensores == null)
+            if (sensor == null)
             {
                 return NotFound();
             }
 
-            return sensores;
+            return sensor;
         }
 
-        // PUT: api/Sensores/5
+        // PUT: api/Sensors/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutSensores(int id, Sensores sensores)
+        public async Task<IActionResult> PutSensor(int id, Sensor sensor)
         {
-            if (id != sensores.SensoresId)
+            if (id != sensor.SensorId)
             {
                 return BadRequest();
             }
 
-            _context.Entry(sensores).State = EntityState.Modified;
+            _context.Entry(sensor).State = EntityState.Modified;
 
             try
             {
@@ -59,7 +59,7 @@ namespace GestorApp.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!SensoresExists(id))
+                if (!SensorExists(id))
                 {
                     return NotFound();
                 }
@@ -72,36 +72,36 @@ namespace GestorApp.Controllers
             return NoContent();
         }
 
-        // POST: api/Sensores
+        // POST: api/Sensors
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<Sensores>> PostSensores(Sensores sensores)
+        public async Task<ActionResult<Sensor>> PostSensor(Sensor sensor)
         {
-            _context.Sensores.Add(sensores);
+            _context.Sensores.Add(sensor);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetSensores", new { id = sensores.SensoresId }, sensores);
+            return CreatedAtAction("GetSensor", new { id = sensor.SensorId }, sensor);
         }
 
-        // DELETE: api/Sensores/5
+        // DELETE: api/Sensors/5
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteSensores(int id)
+        public async Task<IActionResult> DeleteSensor(int id)
         {
-            var sensores = await _context.Sensores.FindAsync(id);
-            if (sensores == null)
+            var sensor = await _context.Sensores.FindAsync(id);
+            if (sensor == null)
             {
                 return NotFound();
             }
 
-            _context.Sensores.Remove(sensores);
+            _context.Sensores.Remove(sensor);
             await _context.SaveChangesAsync();
 
             return NoContent();
         }
 
-        private bool SensoresExists(int id)
+        private bool SensorExists(int id)
         {
-            return _context.Sensores.Any(e => e.SensoresId == id);
+            return _context.Sensores.Any(e => e.SensorId == id);
         }
     }
 }

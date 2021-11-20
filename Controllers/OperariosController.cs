@@ -22,36 +22,36 @@ namespace GestorApp.Controllers
 
         // GET: api/Operarios
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Operarios>>> GetOperarios()
+        public async Task<ActionResult<IEnumerable<Operario>>> GetOperarios()
         {
             return await _context.Operarios.ToListAsync();
         }
 
         // GET: api/Operarios/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Operarios>> GetOperarios(int id)
+        public async Task<ActionResult<Operario>> GetOperario(int id)
         {
-            var operarios = await _context.Operarios.FindAsync(id);
+            var operario = await _context.Operarios.FindAsync(id);
 
-            if (operarios == null)
+            if (operario == null)
             {
                 return NotFound();
             }
 
-            return operarios;
+            return operario;
         }
 
         // PUT: api/Operarios/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutOperarios(int id, Operarios operarios)
+        public async Task<IActionResult> PutOperario(int id, Operario operario)
         {
-            if (id != operarios.OperariosId)
+            if (id != operario.OperarioId)
             {
                 return BadRequest();
             }
 
-            _context.Entry(operarios).State = EntityState.Modified;
+            _context.Entry(operario).State = EntityState.Modified;
 
             try
             {
@@ -59,7 +59,7 @@ namespace GestorApp.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!OperariosExists(id))
+                if (!OperarioExists(id))
                 {
                     return NotFound();
                 }
@@ -75,33 +75,33 @@ namespace GestorApp.Controllers
         // POST: api/Operarios
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<Operarios>> PostOperarios(Operarios operarios)
+        public async Task<ActionResult<Operario>> PostOperario(Operario operario)
         {
-            _context.Operarios.Add(operarios);
+            _context.Operarios.Add(operario);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetOperarios", new { id = operarios.OperariosId }, operarios);
+            return CreatedAtAction("GetOperario", new { id = operario.OperarioId }, operario);
         }
 
         // DELETE: api/Operarios/5
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteOperarios(int id)
+        public async Task<IActionResult> DeleteOperario(int id)
         {
-            var operarios = await _context.Operarios.FindAsync(id);
-            if (operarios == null)
+            var operario = await _context.Operarios.FindAsync(id);
+            if (operario == null)
             {
                 return NotFound();
             }
 
-            _context.Operarios.Remove(operarios);
+            _context.Operarios.Remove(operario);
             await _context.SaveChangesAsync();
 
             return NoContent();
         }
 
-        private bool OperariosExists(int id)
+        private bool OperarioExists(int id)
         {
-            return _context.Operarios.Any(e => e.OperariosId == id);
+            return _context.Operarios.Any(e => e.OperarioId == id);
         }
     }
 }

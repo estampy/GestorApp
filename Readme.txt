@@ -11,9 +11,7 @@ En este proyecto se utilizara los siguientes paquetes Nugets:
 
 - Microsoft.AspNetCore.Mvc.NewtonsoftJson
 - Microsoft.EntityFrameworkCore
-- Microsoft.EntityFrameworkCore.InMemory
 - Microsoft.EntityFrameworkCore.Proxies
-- Microsoft.EntityFrameworkCore.SqlServer
 - Microsoft.EntityFrameworkCore.Tools
 - Microsoft.VisualStudio.Web.CodeGeneration.Design
 - MySql.EntityFrameworkCore

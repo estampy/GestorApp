@@ -17,27 +17,27 @@ namespace GestorApp.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 64)
                 .HasAnnotation("ProductVersion", "5.0.12");
 
-            modelBuilder.Entity("GestorApp.Models.Apps", b =>
+            modelBuilder.Entity("GestorApp.Models.App", b =>
                 {
-                    b.Property<int>("AppsId")
+                    b.Property<int>("AppId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
                     b.Property<string>("Nombre")
                         .HasColumnType("text");
 
-                    b.HasKey("AppsId");
+                    b.HasKey("AppId");
 
                     b.ToTable("Apps");
                 });
 
-            modelBuilder.Entity("GestorApp.Models.Instalaciones", b =>
+            modelBuilder.Entity("GestorApp.Models.Instalacion", b =>
                 {
-                    b.Property<int>("InstalacionesId")
+                    b.Property<int>("InstalacionId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<int>("AppsId")
+                    b.Property<int>("AppId")
                         .HasColumnType("int");
 
                     b.Property<bool>("Exitosa")
@@ -46,26 +46,26 @@ namespace GestorApp.Migrations
                     b.Property<DateTime>("Fecha")
                         .HasColumnType("datetime");
 
-                    b.Property<int>("OperariosId")
+                    b.Property<int>("OperarioId")
                         .HasColumnType("int");
 
-                    b.Property<int>("TelefonosID")
+                    b.Property<int>("TelefonoId")
                         .HasColumnType("int");
 
-                    b.HasKey("InstalacionesId");
+                    b.HasKey("InstalacionId");
 
-                    b.HasIndex("AppsId");
+                    b.HasIndex("AppId");
 
-                    b.HasIndex("OperariosId");
+                    b.HasIndex("OperarioId");
 
-                    b.HasIndex("TelefonosID");
+                    b.HasIndex("TelefonoId");
 
                     b.ToTable("Instalaciones");
                 });
 
-            modelBuilder.Entity("GestorApp.Models.Operarios", b =>
+            modelBuilder.Entity("GestorApp.Models.Operario", b =>
                 {
-                    b.Property<int>("OperariosId")
+                    b.Property<int>("OperarioId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
@@ -75,28 +75,28 @@ namespace GestorApp.Migrations
                     b.Property<string>("Nombre")
                         .HasColumnType("text");
 
-                    b.HasKey("OperariosId");
+                    b.HasKey("OperarioId");
 
                     b.ToTable("Operarios");
                 });
 
-            modelBuilder.Entity("GestorApp.Models.Sensores", b =>
+            modelBuilder.Entity("GestorApp.Models.Sensor", b =>
                 {
-                    b.Property<int>("SensoresId")
+                    b.Property<int>("SensorId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
                     b.Property<string>("Nombre")
                         .HasColumnType("text");
 
-                    b.HasKey("SensoresId");
+                    b.HasKey("SensorId");
 
                     b.ToTable("Sensores");
                 });
 
-            modelBuilder.Entity("GestorApp.Models.Telefonos", b =>
+            modelBuilder.Entity("GestorApp.Models.Telefono", b =>
                 {
-                    b.Property<int>("TelefonosId")
+                    b.Property<int>("TelefonoId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
@@ -109,43 +109,43 @@ namespace GestorApp.Migrations
                     b.Property<float>("Precio")
                         .HasColumnType("float");
 
-                    b.HasKey("TelefonosId");
+                    b.HasKey("TelefonoId");
 
                     b.ToTable("Telefonos");
                 });
 
-            modelBuilder.Entity("SensoresTelefonos", b =>
+            modelBuilder.Entity("SensorTelefono", b =>
                 {
-                    b.Property<int>("SensoresId")
+                    b.Property<int>("SensoresSensorId")
                         .HasColumnType("int");
 
-                    b.Property<int>("TelefonosId")
+                    b.Property<int>("TelefonosTelefonoId")
                         .HasColumnType("int");
 
-                    b.HasKey("SensoresId", "TelefonosId");
+                    b.HasKey("SensoresSensorId", "TelefonosTelefonoId");
 
-                    b.HasIndex("TelefonosId");
+                    b.HasIndex("TelefonosTelefonoId");
 
-                    b.ToTable("SensoresTelefonos");
+                    b.ToTable("SensorTelefono");
                 });
 
-            modelBuilder.Entity("GestorApp.Models.Instalaciones", b =>
+            modelBuilder.Entity("GestorApp.Models.Instalacion", b =>
                 {
-                    b.HasOne("GestorApp.Models.Apps", "Apps")
+                    b.HasOne("GestorApp.Models.App", "Apps")
                         .WithMany("Instalaciones")
-                        .HasForeignKey("AppsId")
+                        .HasForeignKey("AppId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("GestorApp.Models.Operarios", "Operarios")
+                    b.HasOne("GestorApp.Models.Operario", "Operarios")
                         .WithMany("Instalaciones")
-                        .HasForeignKey("OperariosId")
+                        .HasForeignKey("OperarioId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("GestorApp.Models.Telefonos", "Telefonos")
+                    b.HasOne("GestorApp.Models.Telefono", "Telefonos")
                         .WithMany("Instalaciones")
-                        .HasForeignKey("TelefonosID")
+                        .HasForeignKey("TelefonoId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -156,32 +156,32 @@ namespace GestorApp.Migrations
                     b.Navigation("Telefonos");
                 });
 
-            modelBuilder.Entity("SensoresTelefonos", b =>
+            modelBuilder.Entity("SensorTelefono", b =>
                 {
-                    b.HasOne("GestorApp.Models.Sensores", null)
+                    b.HasOne("GestorApp.Models.Sensor", null)
                         .WithMany()
-                        .HasForeignKey("SensoresId")
+                        .HasForeignKey("SensoresSensorId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("GestorApp.Models.Telefonos", null)
+                    b.HasOne("GestorApp.Models.Telefono", null)
                         .WithMany()
-                        .HasForeignKey("TelefonosId")
+                        .HasForeignKey("TelefonosTelefonoId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("GestorApp.Models.Apps", b =>
+            modelBuilder.Entity("GestorApp.Models.App", b =>
                 {
                     b.Navigation("Instalaciones");
                 });
 
-            modelBuilder.Entity("GestorApp.Models.Operarios", b =>
+            modelBuilder.Entity("GestorApp.Models.Operario", b =>
                 {
                     b.Navigation("Instalaciones");
                 });
 
-            modelBuilder.Entity("GestorApp.Models.Telefonos", b =>
+            modelBuilder.Entity("GestorApp.Models.Telefono", b =>
                 {
                     b.Navigation("Instalaciones");
                 });

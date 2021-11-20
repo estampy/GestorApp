@@ -20,38 +20,38 @@ namespace GestorApp.Controllers
             _context = context;
         }
 
-        // GET: api/Instalaciones
+        // GET: api/Instalacions
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Instalaciones>>> GetInstalaciones()
+        public async Task<ActionResult<IEnumerable<Instalacion>>> GetInstalaciones()
         {
             return await _context.Instalaciones.ToListAsync();
         }
 
-        // GET: api/Instalaciones/5
+        // GET: api/Instalacions/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Instalaciones>> GetInstalaciones(int id)
+        public async Task<ActionResult<Instalacion>> GetInstalacion(int id)
         {
-            var instalaciones = await _context.Instalaciones.FindAsync(id);
+            var instalacion = await _context.Instalaciones.FindAsync(id);
 
-            if (instalaciones == null)
+            if (instalacion == null)
             {
                 return NotFound();
             }
 
-            return instalaciones;
+            return instalacion;
         }
 
-        // PUT: api/Instalaciones/5
+        // PUT: api/Instalacions/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutInstalaciones(int id, Instalaciones instalaciones)
+        public async Task<IActionResult> PutInstalacion(int id, Instalacion instalacion)
         {
-            if (id != instalaciones.InstalacionesId)
+            if (id != instalacion.InstalacionId)
             {
                 return BadRequest();
             }
 
-            _context.Entry(instalaciones).State = EntityState.Modified;
+            _context.Entry(instalacion).State = EntityState.Modified;
 
             try
             {
@@ -59,7 +59,7 @@ namespace GestorApp.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!InstalacionesExists(id))
+                if (!InstalacionExists(id))
                 {
                     return NotFound();
                 }
@@ -72,36 +72,36 @@ namespace GestorApp.Controllers
             return NoContent();
         }
 
-        // POST: api/Instalaciones
+        // POST: api/Instalacions
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<Instalaciones>> PostInstalaciones(Instalaciones instalaciones)
+        public async Task<ActionResult<Instalacion>> PostInstalacion(Instalacion instalacion)
         {
-            _context.Instalaciones.Add(instalaciones);
+            _context.Instalaciones.Add(instalacion);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetInstalaciones", new { id = instalaciones.InstalacionesId }, instalaciones);
+            return CreatedAtAction("GetInstalacion", new { id = instalacion.InstalacionId }, instalacion);
         }
 
-        // DELETE: api/Instalaciones/5
+        // DELETE: api/Instalacions/5
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteInstalaciones(int id)
+        public async Task<IActionResult> DeleteInstalacion(int id)
         {
-            var instalaciones = await _context.Instalaciones.FindAsync(id);
-            if (instalaciones == null)
+            var instalacion = await _context.Instalaciones.FindAsync(id);
+            if (instalacion == null)
             {
                 return NotFound();
             }
 
-            _context.Instalaciones.Remove(instalaciones);
+            _context.Instalaciones.Remove(instalacion);
             await _context.SaveChangesAsync();
 
             return NoContent();
         }
 
-        private bool InstalacionesExists(int id)
+        private bool InstalacionExists(int id)
         {
-            return _context.Instalaciones.Any(e => e.InstalacionesId == id);
+            return _context.Instalaciones.Any(e => e.InstalacionId == id);
         }
     }
 }

@@ -20,38 +20,38 @@ namespace GestorApp.Controllers
             _context = context;
         }
 
-        // GET: api/Telefonos
+        // GET: api/Telefonoes
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Telefonos>>> GetTelefonos()
+        public async Task<ActionResult<IEnumerable<Telefono>>> GetTelefonos()
         {
             return await _context.Telefonos.ToListAsync();
         }
 
-        // GET: api/Telefonos/5
+        // GET: api/Telefonoes/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Telefonos>> GetTelefonos(int id)
+        public async Task<ActionResult<Telefono>> GetTelefono(int id)
         {
-            var telefonos = await _context.Telefonos.FindAsync(id);
+            var telefono = await _context.Telefonos.FindAsync(id);
 
-            if (telefonos == null)
+            if (telefono == null)
             {
                 return NotFound();
             }
 
-            return telefonos;
+            return telefono;
         }
 
-        // PUT: api/Telefonos/5
+        // PUT: api/Telefonoes/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutTelefonos(int id, Telefonos telefonos)
+        public async Task<IActionResult> PutTelefono(int id, Telefono telefono)
         {
-            if (id != telefonos.TelefonosId)
+            if (id != telefono.TelefonoId)
             {
                 return BadRequest();
             }
 
-            _context.Entry(telefonos).State = EntityState.Modified;
+            _context.Entry(telefono).State = EntityState.Modified;
 
             try
             {
@@ -59,7 +59,7 @@ namespace GestorApp.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!TelefonosExists(id))
+                if (!TelefonoExists(id))
                 {
                     return NotFound();
                 }
@@ -72,36 +72,36 @@ namespace GestorApp.Controllers
             return NoContent();
         }
 
-        // POST: api/Telefonos
+        // POST: api/Telefonoes
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<Telefonos>> PostTelefonos(Telefonos telefonos)
+        public async Task<ActionResult<Telefono>> PostTelefono(Telefono telefono)
         {
-            _context.Telefonos.Add(telefonos);
+            _context.Telefonos.Add(telefono);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetTelefonos", new { id = telefonos.TelefonosId }, telefonos);
+            return CreatedAtAction("GetTelefono", new { id = telefono.TelefonoId }, telefono);
         }
 
-        // DELETE: api/Telefonos/5
+        // DELETE: api/Telefonoes/5
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteTelefonos(int id)
+        public async Task<IActionResult> DeleteTelefono(int id)
         {
-            var telefonos = await _context.Telefonos.FindAsync(id);
-            if (telefonos == null)
+            var telefono = await _context.Telefonos.FindAsync(id);
+            if (telefono == null)
             {
                 return NotFound();
             }
 
-            _context.Telefonos.Remove(telefonos);
+            _context.Telefonos.Remove(telefono);
             await _context.SaveChangesAsync();
 
             return NoContent();
         }
 
-        private bool TelefonosExists(int id)
+        private bool TelefonoExists(int id)
         {
-            return _context.Telefonos.Any(e => e.TelefonosId == id);
+            return _context.Telefonos.Any(e => e.TelefonoId == id);
         }
     }
 }

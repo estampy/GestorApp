@@ -13,11 +13,11 @@ namespace GestorApp.Models
             optionsBuilder.UseLazyLoadingProxies();
         }
 
-        public DbSet<GestorApp.Models.Instalaciones> Instalaciones { get; set; }
-        public DbSet<GestorApp.Models.Operarios> Operarios { get; set; }
-        public DbSet<GestorApp.Models.Apps> Apps { get; set; }
-        public DbSet<GestorApp.Models.Telefonos> Telefonos { get; set; }
-        public DbSet<GestorApp.Models.Sensores> Sensores { get; set; }
+        public DbSet<GestorApp.Models.Instalacion> Instalaciones { get; set; }
+        public DbSet<GestorApp.Models.Operario> Operarios { get; set; }
+        public DbSet<GestorApp.Models.App> Apps { get; set; }
+        public DbSet<GestorApp.Models.Telefono> Telefonos { get; set; }
+        public DbSet<GestorApp.Models.Sensor> Sensores { get; set; }
     }
 
 }

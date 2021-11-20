@@ -22,36 +22,36 @@ namespace GestorApp.Controllers
 
         // GET: api/Apps
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Apps>>> GetApps()
+        public async Task<ActionResult<IEnumerable<App>>> GetApps()
         {
             return await _context.Apps.ToListAsync();
         }
 
         // GET: api/Apps/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Apps>> GetApps(int id)
+        public async Task<ActionResult<App>> GetApp(int id)
         {
-            var apps = await _context.Apps.FindAsync(id);
+            var app = await _context.Apps.FindAsync(id);
 
-            if (apps == null)
+            if (app == null)
             {
                 return NotFound();
             }
 
-            return apps;
+            return app;
         }
 
         // PUT: api/Apps/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutApps(int id, Apps apps)
+        public async Task<IActionResult> PutApp(int id, App app)
         {
-            if (id != apps.AppsId)
+            if (id != app.AppId)
             {
                 return BadRequest();
             }
 
-            _context.Entry(apps).State = EntityState.Modified;
+            _context.Entry(app).State = EntityState.Modified;
 
             try
             {
@@ -59,7 +59,7 @@ namespace GestorApp.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!AppsExists(id))
+                if (!AppExists(id))
                 {
                     return NotFound();
                 }
@@ -75,33 +75,33 @@ namespace GestorApp.Controllers
         // POST: api/Apps
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<Apps>> PostApps(Apps apps)
+        public async Task<ActionResult<App>> PostApp(App app)
         {
-            _context.Apps.Add(apps);
+            _context.Apps.Add(app);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetApps", new { id = apps.AppsId }, apps);
+            return CreatedAtAction("GetApp", new { id = app.AppId }, app);
         }
 
         // DELETE: api/Apps/5
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteApps(int id)
+        public async Task<IActionResult> DeleteApp(int id)
         {
-            var apps = await _context.Apps.FindAsync(id);
-            if (apps == null)
+            var app = await _context.Apps.FindAsync(id);
+            if (app == null)
             {
                 return NotFound();
             }
 
-            _context.Apps.Remove(apps);
+            _context.Apps.Remove(app);
             await _context.SaveChangesAsync();
 
             return NoContent();
         }
 
-        private bool AppsExists(int id)
+        private bool AppExists(int id)
         {
-            return _context.Apps.Any(e => e.AppsId == id);
+            return _context.Apps.Any(e => e.AppId == id);
         }
     }
 }
